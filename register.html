@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+    <script src="./vendor/jquery.min.js"></script>
+    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
+    <script src="./vendor/bootstrap/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <script src="./vendor/md5.min.js"></script>
     <title>彩70</title>
     <link rel="stylesheet" type="text/css" href="./css/reg.css" />
   </head>
@@ -23,7 +24,7 @@
             </ul>
             <div class="reg-info">
                 <div class="reg-form">
-                    <form id="registerForm" action="/do/pc/register">
+                    <form id="registerForm">
                         <div class="form-group">
                             <label>用户账号</label>
                             <input type="text" class="form-control" name="username" id="registerUsername" placeholder="用户名" />
@@ -80,7 +81,17 @@
   <script>
       window.onload = function(){
           $("#xf-login").click(function(){
-              var username = $("#registerUsername").val();
+            regFunc()
+          });
+
+          $('#registerForm').keyup(function (e) { 
+            if(event.keyCode == 13){ //按下回车键
+                regFunc()
+             }
+           })
+
+          function regFunc() { 
+            var username = $("#registerUsername").val();
               var regname = /^[a-zA-Z0-9\~\!\@\#\$\%\^\&amp;\*\(\)\_\+\{\}\:\&quot;\|\\?\-\=\[\]\;\'\\\,\.\/]{6,15}$/;
               var password = $("#registerPassword").val();
               var regpsd = /^[a-zA-Z0-9\~\!\@\#\$\%\^\&amp;\*\(\)\_\+\{\}\:\&quot;\|\\?\-\=\[\]\;\'\\\,\.\/]{6,21}$/;
@@ -125,7 +136,25 @@
                 layer.alert("手机号码格式错误");
                 return false;
               }
-          });
+              $.ajax({
+                  url :'http://10.16.56.88:8813/do/pc/register',
+                  type : 'post',
+                  data:{
+                    username : username,
+                    password : md5(password),
+                    fullName : name,
+                    mobile : shouji
+                  },
+                  success(data){
+                      console.log(data)
+                      if(data.status == true) {
+                        window.location.href=data.url+"?token="+data.token;
+                      }else{
+                        layer.alert(data.message);
+                      }
+                  }
+              })
+           }
       }
   </script>
 </html>

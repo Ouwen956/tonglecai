@@ -6,36 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="./css/index.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="./vendor/jquery.min.js"></script>
+  <script src="./vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+  <script src="./vendor/md5.min.js"></script>
 </head>
 
 <body>
-  <!-- <ul class="cloud clearfix">
-    <li class="fl">
-      <img src="./images/cloud.png">
-    </li>
-    <li class="fl">
-        <img src="./images/cloud.png">
-    </li>
-    <li class="fl">
-        <img src="./images/cloud.png">
-    </li>
-  </ul> -->
   <div class="cloud"></div>
   <header class="w">
     <div class="headerBox clearfix">
       <div class="headerleft fl clearfix">
         <div class="headerLogo fl"></div>
         <div class="headerLink fl"></div>
-        <div class="headerText fl"></div>
+        <div class="headerText fl"><div class="star1 star"></div><div class="star2 star"></div></div>
       </div>
-      <div class="headerright fr"></div>
+      <div class="headerright fr">
+        <a href="appdown.html" class="appdown-link fl">
+          <img src="./images/appd.png" />
+        </a>
+        <a href="javascript:;" class="kf-link fr">
+          <img src="./images/kefu.png" />
+        </a>
+      </div>
     </div>
   </header>
   <div class="mainbox w">
     <div class="centent clearfix">
       <div class="contentLeft fl">
+        <div class="star1 star"></div>
+        <div class="star2 star"></div>
+        <div class="star3 star"></div>
+        <div class="star4 star"></div>
+        <div class="star5 star"></div>
+        <div class="star6 star"></div>
         <div class="page1">
           <div class="page1Img1"></div>
           <div class="page1Img2"></div>
@@ -55,18 +61,15 @@
         </div>
       </div>
       <div class="contentRight user-login fr">
-        <a href="javascript:;">
-          <div class="onlineSer login_btn"></div>
-        </a>
-        <form>
+        <form  id="loginForm">
           <div class="input-group">
             <input type="text" id="userName" maxlength="15" placeholder="请输入您的账号">
           </div>
           <div class="input-group">
-            <input type="password" value="" id="userPwd" maxlength="20" class="ipt" placeholder="您的密码">
+            <input type="password" value="" id="userPwd" maxlength="20" class="ipt" placeholder="请输入您的密码">
           </div>
           <div class="btn-group">
-            <input type="submit" value="" class="fl login_btn groupBtn LoginBtn" id="btnlogin">
+            <button class="fl login_btn groupBtn LoginBtn" type="button" id="btnlogin"></button>
             <a href="./register.html" class="fr login_btn groupBtn regBtn"></a>
           </div>
         </form>
@@ -84,7 +87,7 @@
 <script>
   $(function () {
     page1Show()
-    function page1Show() {
+    function page1Show() { 
       $('.page3').hide()
       $('.page1').show()
       $('.page1Img1').addClass('page1LtoR')
@@ -119,6 +122,7 @@
       }, 3000)
     }
 
+     //云
     var CloudLeft = 0;
     setInterval(function () {
       if(CloudLeft < -1920){
@@ -127,6 +131,83 @@
       CloudLeft--
       $('.cloud').css('left',CloudLeft)
      },15)
+
+     //登陆
+      $("#btnlogin").click(function(){
+        loginFunc()
+          });
+
+          //试玩
+          $('.sigBtn').click(function(){
+            $.ajax({
+              url:'http://10.16.56.88:8813/do/pc/guestLogin',
+              type:'post',
+              data:{},
+              success(data){
+                if(data.status == true) {
+                  window.location.href = data.url+"?token="+data.token
+                }else{
+                  layer.alert(data.msg);
+                }
+              },
+              error(data){
+                console.log(data)
+              }
+            })
+          })
+
+          $('#loginForm').keyup(function (e) { 
+            if(event.keyCode == 13){ //按下回车键
+              loginFunc()
+             }
+            
+           })
+
+           function loginFunc() { 
+            var username = $("#userName").val();
+              var regname = /^[a-zA-Z0-9\~\!\@\#\$\%\^\&amp;\*\(\)\_\+\{\}\:\&quot;\|\\?\-\=\[\]\;\'\\\,\.\/]{6,15}$/;
+              var password = $("#userPwd").val();
+              var regpsd = /^[a-zA-Z0-9\~\!\@\#\$\%\^\&amp;\*\(\)\_\+\{\}\:\&quot;\|\\?\-\=\[\]\;\'\\\,\.\/]{6,21}$/;
+              if(!username){
+                  layer.alert('请输入用户名!');
+                  return false;
+              }
+              if(!password){
+                layer.alert("请输入密码!");
+                  return false;
+              }
+              if (!regname.test(username)) {
+                layer.alert("用户名必须是6-15位字符");
+                return false;
+              }
+              if (!regpsd.test(password)) {
+                layer.alert("密码必须是6-21位字符");
+                return false;
+              }
+              $.ajax({
+                url:'http://10.16.56.88:8813/do/pc/login',
+                type:'post',
+                data: {
+                  username : username,
+                  password : md5(password)
+                },
+                success(data){
+                  console.log(data)
+                  if(data.status == true) {
+                        window.location.href=data.url+"?token="+data.token;
+                      }else{
+                        layer.alert(data.msg);
+                      }
+                },
+                error(data){
+                  if(data){
+                    layer.alert(data);
+                  }else{
+                    layer.alert('网络繁忙,请稍后再试');
+                  }
+                }
+              })
+            }
   });
 </script>
 </html>

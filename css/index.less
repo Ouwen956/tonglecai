@@ -1,11 +1,24 @@
+  //common start
 * {
   margin: 0;
   padding: 0;
 }
 
+html {
+  width: 100%; 
+   height: 100%;
+}
+
 body {
+  width: 100%;
+  height: 100%;
   background-image: url('../images/body_bg.jpg');
   overflow: hidden;
+  background-size: cover;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .fl {
@@ -27,6 +40,7 @@ body {
 .clearfix {
   zoom: 1;
 }
+//common end
 
 .w {
   max-width: 1000px;
@@ -34,39 +48,10 @@ body {
   height: 100px;
 }
 
-header {
-  .headerBox {
-    margin-top: 40px;
-    height: 100px;
-    .headerleft {
-      .headerLogo {
-        width: 80px;
-        height: 80px;
-        background-image: url('../images/logo.png');
-        margin-top: 5px;
-        transform: rotateY(0deg);
-        animation: LogoScale 6s linear infinite;
-      }
-      .headerLink {
-        width: 122px;
-        height: 77px;
-        background-image: url('../images/headerLink.png');
-        margin-left: 10px;
-        margin-top: 6px;
-        position: relative;
-        overflow: hidden;
-      }
-      .headerText {
-        width: 198px;
-        height: 54px;
-        margin-left: 5px;
-        background-image: url('../images/headerText.png');
-        margin-top: 16px;
-      }
-    }
-    .headerright {}
-  }
-  ;
+.star {
+  background-image: url('../images/star.png');
+  width: 41px;
+  height: 41px;
 }
 
 .cloud {
@@ -75,7 +60,63 @@ header {
   height: 360px;
   width: 1920px;
   background-image: url('../images/cloud.png');
+  pointer-events:none
 }
+
+header {
+  .headerBox {
+    margin-top: 20px;
+    height: 100px;
+    .headerleft {
+      .headerLogo {
+        width: 106px;
+        height: 90px;
+        background-image: url('../images/logo.png');
+        transform: rotateY(0deg);
+        animation: LogoScale 6s linear infinite;
+      }
+      .headerLink {
+        width: 156px;
+        height: 104px;
+        background-image: url('../images/headerLink.png');
+        margin-left: 2px;
+        position: relative;
+        overflow: hidden;
+      }
+      .headerText {
+        width: 198px;
+        height: 54px;
+        margin-left: 8px;
+        background-image: url('../images/headerText.png');
+        margin-top: 20px;
+        position: relative;
+        .star1 {
+          position: absolute;
+          left: 15px;
+          top: 3px;
+          animation: star1 1s linear infinite;
+          opacity: 0;
+        }
+        .star2 {
+          position: absolute;
+          left: 143px;
+          top: -10px;
+          animation: star1 1.5s 1s linear infinite;
+          opacity: 0;
+        }
+      }
+    }
+    .headerright {
+      .appdown-link{
+        margin-right: 30px;
+
+      }
+    }
+  }
+  ;
+}
+
+
 
 .mainbox {
   margin-top: 40px;
@@ -86,6 +127,49 @@ header {
     .contentLeft {
       position: relative;
       overflow: hidden;
+      .star1{
+        position: absolute;
+        left: 20px;
+        top: 40px;
+        z-index: 66;
+        animation: star1 1s linear infinite;
+      }
+      .star2{
+        position: absolute;
+        left: 260px;
+        top: 5px;
+        z-index: 66;
+        animation: star1 1.4s linear infinite;
+      }
+      .star3{
+        position: absolute;
+        left: 500px;
+        top: 40px;
+        z-index: 66;
+        animation: star1 1.8s linear infinite;
+      }
+      .star4{
+        position: absolute;
+        left: 300px;
+        top: 120px;
+        z-index: 66;
+        animation: star1 1s linear infinite;
+      }
+      .star5{
+        position: absolute;
+        left: 300px;
+        top: 120px;
+        z-index: 66;
+        animation: star1 2s linear infinite;
+      }
+      .star6{
+        position: absolute;
+        left: 411px;
+        top: 254px;
+        z-index: 66;
+        animation: star1 2s linear infinite;
+      }
+
       .page1 {
         display: none;
         .page1Img1 {
@@ -183,14 +267,6 @@ header {
           opacity: .9;
         }
       }
-      .onlineSer {
-        position: absolute;
-        top: 20px;
-        right: 14px;
-        width: 87px;
-        height: 30px;
-        background-position: 0 0;
-      }
       .input-group {
         position: absolute;
         width: 150px;
@@ -221,6 +297,9 @@ header {
           height: 41px;
           border: 0 none;
           border-radius: 7px;
+          &:first-child{
+            margin-right: 7px;
+          }
         }
         .LoginBtn {
           background-position: 0 -30px;
@@ -244,7 +323,7 @@ header {
 .horse2 {
   position: absolute;
   transform: scale(0.2);
-  animation: horse2 0.5s linear forwards;
+  animation: horse2 6s linear infinite;
   right: 0;
 }
 
@@ -526,20 +605,56 @@ header {
 @keyframes horse2 {
   0%{
     transform: scale(0.2);
-    right : 0px;
+    right : -800px;
     bottom: -30px;
-    opacity: 0.1;
+    opacity: 0.4;
+  }
+  15%{
+    transform: scale(0.5);
+    right : -180px;
+    bottom: -30px;
+    opacity: 0.5;
+  } 
+  28%{
+    transform: scale(0.7);
+    right : 240px;
+    bottom: -30px;
+    opacity: 0.8;
+  } 
+  60%{
+    transform: scale(0.8);
+    right : 380px;
+    bottom: -30px;
+    opacity: 1;
+  } 
+  65%{
+    transform: scale(0.8);
+    right : 380px;
+    bottom: -30px;
+    opacity: 1;
+  } 
+  75%{
+    transform: scale(0.9);
+    right: 1970px;
+    bottom: -200px;
+    opacity: 1;
   }
   100%{
-    transform: scale(0.5);
-    right: 800px;
-    bottom: -150px;
+    transform: scale(0.9);
+    right: 1970px;
+    bottom: -200px;
     opacity: 1;
   }
 }
 
-.headerLink.action:after {
-  left: 130%;
-  -webkit-transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+@keyframes star1 {
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
 }

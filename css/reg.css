@@ -11,10 +11,11 @@ div{
 }
 body{
   font-family: "Microsoft YaHei";
+  background: url(../images/body_bg.jpg) no-repeat top;
+    background-size:cover; 
 }
 .header{
   height: 100px;
-  box-shadow: 0 0 27px #afafaf;
 }
 .container{
   margin: 0 auto;
@@ -28,11 +29,10 @@ body{
 }
 .logo1{
   float: left;
-  margin-top: 12px;
-  margin-right: 10px;
+  animation:LogoScale 6s linear infinite;
 }
 .logo2{
-  margin-top: 15px;
+    height: 95px;
 }
 .appdown-link{
 padding: 5px 18px;
@@ -116,10 +116,8 @@ margin-left: 10px;
 }
 .copyright{
   text-align: center;
-  background: #f5f5f5;
   line-height: 50px;
-  border-bottom: 1px solid #ddd;
-  color: #a7a7a7;
+  color: #fff;
     }
 @media (min-width: 768px){
     .container {
@@ -193,8 +191,6 @@ margin-left: 10px;
     width: 100%;
     float: left;
     height: 670px;
-    background: url(../images/main_top_bg.jpg) no-repeat top;
-    background-size:cover; 
 }
 .phone1000{
     width: 1000px;
@@ -241,10 +237,6 @@ margin-left: 10px;
     color: #c41e2b;
     padding-top: 5px;
 }
-
-.LogoScale{
-  animation: LogoScale 6s linear infinite;
-};
 
 @keyframes LogoScale {
   0%{
