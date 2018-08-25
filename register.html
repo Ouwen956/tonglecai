@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <title>彩70</title>
+    <link rel="stylesheet" type="text/css" href="./css/reg.css" />
+  </head>
+  <body>
+      <div class="content">
+        <div class="reg-header">
+            <div class="reg-head-bg">
+
+            </div>
+        </div>
+        <div class="reg_info">
+            <ul class="reg_title">
+                <li>请在以下填写您的注册信息</li>
+            </ul>
+            <div class="reg-info">
+                <div class="reg-form">
+                    <form id="registerForm" action="/do/pc/register">
+                        <div class="form-group">
+                            <label>用户账号</label>
+                            <input type="text" class="form-control" name="username" id="registerUsername" placeholder="用户名" />
+                        </div>
+        
+                        <div class="form-group">
+                            <label>账号密码</label>
+                            <input type="password" class="form-control" name="password" id="registerPassword" placeholder="密码" />
+                        </div>
+        
+                        <div class="form-group">
+                            <label>确认密码</label>
+                            <input type="password" class="form-control" id="registerPassword1" name="repassword" placeholder="确认密码" />
+                        </div>
+        
+                        <div class="form-group">
+                            <label>真实姓名</label>
+                            <input type="text" class="form-control" name="fullName" id="fullName" placeholder="真实姓名，与提款户口名一致，否则无法提款" />
+                        </div>
+                        <div class="form-group">
+                            <label>手机号码</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="常用手机号码" />
+                        </div>
+        
+                        <div class="form-group">
+                            <div style="float: left;width: 49%;">
+                                <button type="button" id="xf-login" class="btn btn-info btn-block" style="margin-top: 15px;">注 册</button>
+                            </div>
+                            <div style="float: left;width: 49%;margin-left: 6px;">
+                                <a href="index.html" class="btn btn-success btn-block" style="margin-top: 15px;">立即登录</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="reg-form-tips">
+                    <div><span>* 由6-15位字母和数字组成</span></div>
+                    <div><span>* 密码6-21位之间</span></div>
+                    <div><span>* 密码二次确认</span></div>
+                    <div><span>* 姓名必须与您提款银行户口名字一致，否则无法提款</span></div>
+                    
+                    <div><span>* 填写常用联系手机，享受快捷提款及更多VIP会员服务</span></div>
+                </div>
+                <!-- <div class="wechat-fh">
+                    <img src="./images/wechat.jpg" style="width: 100%;">
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="copyright">
+            Copyright ©️ 2018 彩70 All Right Reserve. Powered By Infinite Games
+    </div>
+  </body>
+  <script>
+      window.onload = function(){
+          $("#xf-login").click(function(){
+              var username = $("#registerUsername").val();
+              var regname = /^[a-zA-Z0-9\~\!\@\#\$\%\^\&amp;\*\(\)\_\+\{\}\:\&quot;\|\\?\-\=\[\]\;\'\\\,\.\/]{6,15}$/;
+              var password = $("#registerPassword").val();
+              var regpsd = /^[a-zA-Z0-9\~\!\@\#\$\%\^\&amp;\*\(\)\_\+\{\}\:\&quot;\|\\?\-\=\[\]\;\'\\\,\.\/]{6,21}$/;
+              var password1 = $("#registerPassword1").val();
+              var phoneYanzheng = /^1[3|4|5|7|8|6|9][0-9]{9}$/;
+              var reg = /^([\u4e00-\u9fa5]){2,7}$/;
+              var name = $("#fullName").val();
+              var shouji = $("#mobile").val();
+              if(!username){
+                  layer.alert('请输入用户名!');
+                  return false;
+              }
+              if(!password){
+                  layer.alert("请输入密码!");
+                  return false;
+              }
+              if(!name){
+                  layer.alert("请输入真是姓名!");
+                  return false;
+              }
+              if(!shouji){
+                  layer.alert("请输入手机号!")
+                  return false;
+              }
+              if (!regname.test(username)) {
+                layer.alert("用户名必须是6-15位字符");
+                return false;
+              }
+              if (!regpsd.test(password)) {
+                layer.alert("密码必须是6-21位字符");
+                return false;
+              }
+              if(password != password1){
+                  layer.alert("两次输入的密码不一致");
+                  return false;
+              }
+              if (!reg.test(name)) {
+                layer.alert("真实姓名输入不合法");
+                return false;
+              }
+              if (!phoneYanzheng.test(shouji)) {
+                layer.alert("手机号码格式错误");
+                return false;
+              }
+          });
+      }
+  </script>
+</html>

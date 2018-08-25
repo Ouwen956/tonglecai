@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+  <!-- <ul class="cloud clearfix">
+    <li class="fl">
+      <img src="./images/cloud.png">
+    </li>
+    <li class="fl">
+        <img src="./images/cloud.png">
+    </li>
+    <li class="fl">
+        <img src="./images/cloud.png">
+    </li>
+  </ul> -->
+  <div class="cloud"></div>
+  <header class="w">
+    <div class="headerBox clearfix">
+      <div class="headerleft fl clearfix">
+        <div class="headerLogo fl"></div>
+        <div class="headerLink fl"></div>
+        <div class="headerText fl"></div>
+      </div>
+      <div class="headerright fr"></div>
+    </div>
+  </header>
+  <div class="mainbox w">
+    <div class="centent clearfix">
+      <div class="contentLeft fl">
+        <div class="page1">
+          <div class="page1Img1"></div>
+          <div class="page1Img2"></div>
+          <div class="page1Img3"></div>
+        </div>
+        <div class="page2">
+            <div class="page2Img1"></div>
+            <div class="page2Img2"></div>
+            <div class="page2Img3"></div>
+            <div class="page2Img4"></div>
+        </div>
+        <div class="page3">
+            <div class="page3Img1"></div>
+            <div class="page3Img2"></div>
+            <div class="page3Img3"></div>
+            <div class="page3Img4"></div>
+        </div>
+      </div>
+      <div class="contentRight user-login fr">
+        <a href="javascript:;">
+          <div class="onlineSer login_btn"></div>
+        </a>
+        <form>
+          <div class="input-group">
+            <input type="text" id="userName" maxlength="15" placeholder="请输入您的账号">
+          </div>
+          <div class="input-group">
+            <input type="password" value="" id="userPwd" maxlength="20" class="ipt" placeholder="您的密码">
+          </div>
+          <div class="btn-group">
+            <input type="submit" value="" class="fl login_btn groupBtn LoginBtn" id="btnlogin">
+            <a href="./register.html" class="fr login_btn groupBtn regBtn"></a>
+          </div>
+        </form>
+        <a href="javascript:;">
+          <div class="login_btn sigBtn"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="horse">
+    <img src="./images/horse2.png" class="horse2">
+  </div>
+</body>
+
+<script>
+  $(function () {
+    page1Show()
+    function page1Show() {
+      $('.page3').hide()
+      $('.page1').show()
+      $('.page1Img1').addClass('page1LtoR')
+      $('.page1Img2').addClass('page1UpDown')
+      $('.page1Img3').addClass('page1RtoL')
+      setTimeout(function () {
+        page2Show()
+      }, 5000)
+    }
+
+    function page2Show() {
+      $('.page1').hide()
+      $('.page2').show()
+      $('.page2Img1').addClass('page1LtoR')
+      $('.page2Img2').addClass('page2RightToView1')
+      $('.page2Img3').addClass('page2RightToView2')
+      $('.page2Img4').addClass('page1RtoL')
+      setTimeout(function () {
+        page3Show()
+      }, 5000)
+    }
+
+    function page3Show() {
+      $('.page2').hide()
+      $('.page3').show()
+      $('.page3Img1').addClass('page3Img1')
+      $('.page3Img2').addClass('page3Img2')
+      $('.page3Img3').addClass('page3Img3')
+      $('.page3Img4').addClass('page3Img4')
+      setTimeout(function () {
+        page1Show()
+      }, 3000)
+    }
+
+    var CloudLeft = 0;
+    setInterval(function () {
+      if(CloudLeft < -1920){
+        CloudLeft = 1920
+      }
+      CloudLeft--
+      $('.cloud').css('left',CloudLeft)
+     },15)
+  });
+</script>
+</html>
