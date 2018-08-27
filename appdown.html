@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>幸福彩票</title>
     <link rel="stylesheet" type="text/css" href="css/reg.css" />
+    <script src="./vendor/jquery.min.js"></script>
   </head>
   <body>
     <div class="content">
@@ -12,8 +13,8 @@
           <div class="container">
             <div class="logo-group">
               <a href="./index.html">
-                <img class="logo1" src='./images/logo.png' />
-                <img class="logo2 LogoScale" src="./images/headerLink.png"/>
+                <img class="logo1" src='' />
+                <img class="logo2 LogoScale" src=""/>
               </a>
             </div>
             <a href="appdown.html" class="appdown-link">
@@ -27,7 +28,7 @@
         <div class="phone-content">
             <div class="phone1000">
                 <div class="pleft">
-                    <img src="./images/mobile_icon.png"/>
+                    <img class="phoneImg" src="./images/mobile_icon.png"/>
                 </div>
                 <div class="pright">
                     <img src="./images/down-tit.png" />
@@ -54,5 +55,19 @@
                 Copyright ©️ 彩70成立于2001年，是全球领先的互联网彩票开创者
         </div>
     </div>
+    <script>
+        $.ajax({
+              url:'https://source.66677704.com/jsFile/generate.json',
+              type:'get',
+              data:{},
+              success:function(data){
+                $('.logo1').attr('src','https://source.66677704.com/' + data.logo) //logo
+                $('.logo2').attr('src','https://source.66677704.com/' + data.logolink)  //LinkImg
+                $('.kf-link').attr('href',data.onlineSer) //在线客服
+                $('.phoneImg').attr('src','https://source.66677704.com/' + data.phoneImg) //手机图标
+                $('.ewm-bg img').attr('src','https://source.66677704.com/' + data.appDownEwm) //app下载二维码
+              }
+            })
+    </script>
   </body>
 </html>

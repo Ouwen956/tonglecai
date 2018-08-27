@@ -145,7 +145,11 @@ width: 100%;
 }
 .reg-head-bg{
     height: 160px;
-    background: url(../images/reg_head.png) no-repeat center top;
+}
+
+.reg-head-bg img{
+    width: 100%;
+    height: 100%;
 }
 .reg_info{
     width: 1000px;
@@ -176,7 +180,7 @@ width: 100%;
     line-height: 85px;
     padding-left: 10px;
     float: left;
-    color: #8e8e8e;
+    color: red;
 }
 .form-group label{
     font-size: 14px;

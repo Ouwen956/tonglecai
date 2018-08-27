@@ -15,7 +15,7 @@
       <div class="content">
         <div class="reg-header">
             <div class="reg-head-bg">
-
+                <img src="" class="regTopImg">
             </div>
         </div>
         <div class="reg_info">
@@ -75,7 +75,7 @@
     </div>
     <div class="clear"></div>
     <div class="copyright">
-            Copyright ©️ 2018 彩70 All Right Reserve. Powered By Infinite Games
+        Copyright ©️ 2018 彩70 All Right Reserve. Powered By Infinite Games
     </div>
   </body>
   <script>
@@ -146,7 +146,6 @@
                     mobile : shouji
                   },
                   success(data){
-                      console.log(data)
                       if(data.status == true) {
                         window.location.href=data.url+"?token="+data.token;
                       }else{
@@ -155,6 +154,14 @@
                   }
               })
            }
+           $.ajax({
+              url:'https://source.66677704.com/jsFile/generate.json',
+              type:'get',
+              data:{},
+              success:function(data){
+                $('.regTopImg').attr('src','https://source.66677704.com/' + data.regTopImg) //顶部图片
+              }
+            })
       }
   </script>
 </html>

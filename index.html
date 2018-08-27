@@ -19,8 +19,8 @@
   <header class="w">
     <div class="headerBox clearfix">
       <div class="headerleft fl clearfix">
-        <div class="headerLogo fl"></div>
-        <div class="headerLink fl"></div>
+        <img src="" class="headerLogo fl">
+        <img src="" class="headerLink fl">
         <div class="headerText fl"><div class="star1 star"></div><div class="star2 star"></div></div>
       </div>
       <div class="headerright fr">
@@ -151,7 +151,6 @@
                 }
               },
               error(data){
-                console.log(data)
               }
             })
           })
@@ -192,7 +191,6 @@
                   password : md5(password)
                 },
                 success(data){
-                  console.log(data)
                   if(data.status == true) {
                         window.location.href=data.url+"?token="+data.token;
                       }else{
@@ -208,6 +206,16 @@
                 }
               })
             }
+            $.ajax({
+              url:'https://source.66677704.com/jsFile/generate.json',
+              type:'get',
+              data:{},
+              success:function(data){
+                $('.headerLogo').attr('src','https://source.66677704.com/' + data.logo) //logo
+                $('.headerLink').attr('src','https://source.66677704.com/' + data.logolink)  //LinkImg
+                $('.kf-link').attr('href',data.onlineSer) //在线客服
+              }
+            })
   });
 </script>
 </html>
